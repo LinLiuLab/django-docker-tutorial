@@ -14,10 +14,12 @@ services:
     expose:
       - "8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - web_network
       - db_network
+
   db:
     image: mysql:5.7
     volumes:
@@ -31,6 +33,12 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     networks:
       - db_network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${DB_PASSWORD}"]
+      timeout: 5s
+      interval: 10s
+      retries: 10
+
   nginx:
     restart: always
     image: nginx:latest

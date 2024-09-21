@@ -26,12 +26,6 @@ Docker + Django + Mysql + Ngnix + Gunicorn 的示例，帮助同学们快速理�
 
    * 首次启动会先下载所需的基础镜像，请耐心等待；
 
-   * 可能会出现连接不上数据库的问题，是因为 MySQL 镜像初次使用需要一定的初始化过程；
-
-     >  If the application you're trying to connect to MySQL does not handle MySQL downtime or waiting for MySQL to start gracefully, then putting a connect-retry loop before the service starts might be necessary. 
-
-   * Django 会重试连接数据库，等 MySQL 初始化完成后可完成连接
-
 5. 在 `8001` 端口访问[启动的应用](http://localhost:8001)。
 
 ### 其他指令
